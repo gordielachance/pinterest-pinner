@@ -322,11 +322,12 @@ class Pinner
         $this->_loadContent('/me/');
 
         $appJson = $this->_responseToArray();
+
         if (
             $appJson
-            and isset($appJson['tree']['data'], $appJson['tree']['data']['username'])
+            and isset($appJson['context']['user'], $appJson['context']['user']['username'])
         ) {
-            $this->userData = $appJson['tree']['data'];
+            $this->userData = $appJson['context']['user'];
             return $this->userData;
         }
 
