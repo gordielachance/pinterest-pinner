@@ -424,12 +424,13 @@ class Pinner
             $this->_loadContent($url);
         }
 
-        if (isset($this->_responseHeaders['Set-Cookie'])) {
-            if (is_array($this->_responseHeaders['Set-Cookie'])) {
-                $content = implode(' ', $this->_responseHeaders['Set-Cookie']);
+        if (isset($this->_responseHeaders['set-cookie'])) {
+            if (is_array($this->_responseHeaders['set-cookie'])) {
+                $content = implode(' ', $this->_responseHeaders['set-cookie']);
             } else {
-                $content = (string)$this->_responseHeaders['Set-Cookie'];
+                $content = (string)$this->_responseHeaders['set-cookie'];
             }
+            
             preg_match('/csrftoken=(.*)[\b;\s]/isU', $content, $match);
             if (isset($match[1]) and $match[1]) {
                 $this->_csrfToken = $match[1];
